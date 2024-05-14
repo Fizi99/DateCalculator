@@ -3,12 +3,13 @@ const startDateDOM = document.getElementById("startDate");
 const endDateDOM = document.getElementById("endDate");
 const resultDOM = document.getElementById("result");
 
-let startDate = new Date();
-let endDate = new Date();
+let startDate = null;
+let endDate = null;
 
 startDateDOM.addEventListener("change", (e)=> {
     startDate = new Date(startDateDOM.value);
     let days = calculateDiff(startDate, endDate);
+    console.log(days);
     let string = 'difference in days: ' + days;
     resultDOM.innerHTML = string;
 });
@@ -20,10 +21,11 @@ endDateDOM.addEventListener("change", (e)=> {
 });
 
 function calculateDiff(startDate, endDate){
-    let firstDate;
-    let secondDate;
 
-    if(startDate !== null || startDate !== undefined && endDate !== null || endDate !== undefined){
+
+    if(startDate !== null && startDate !== undefined && endDate !== null && endDate !== undefined){
+        let firstDate;
+        let secondDate;
         if(startDate > endDate){
             firstDate = endDate;
             secondDate = startDate;
@@ -35,7 +37,7 @@ function calculateDiff(startDate, endDate){
         return (secondDate - firstDate)/86400000;
     }
 
-    return 0;
+    return "please enter a second date!";
 }
 
 
